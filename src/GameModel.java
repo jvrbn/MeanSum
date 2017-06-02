@@ -22,9 +22,26 @@ public class GameModel {
     private static final int MAXNUMBER = 99;
     private static final int MINNUMBER = 10;
 
+    private int [] tab;
+
     public GameModel(){
 
 
+        int nombreRegroupement = getRandom(MAXREGROUPEMENT, MINREGROUPEMENT);
+        tab = new int[nombreRegroupement];
+        for(int i = 0; i < nombreRegroupement; i++){
+
+            tab[i] = nbAlea();
+
+        }
+
+    }
+
+    public int getRandom(int borneSup, int borneInf){
+
+        Random chiffre = new Random();
+
+        return chiffre.nextInt((borneSup - borneInf) + 1)  + borneInf;
 
     }
 
@@ -33,12 +50,25 @@ public class GameModel {
         Random chiffre = new Random();
         double probabilite = chiffre.nextDouble();
 
-        if(probabilite <= 0.7){
+        if(probabilite < 0.7){
 
-            return chiffre.nextInt((MAXCHIFFRE - MINCHIFFRE) + 1);
+            return getRandom(MAXCHIFFRE , MINCHIFFRE);
 
         }
 
-        return chiffre.nextInt((MAXNUMBER - MINNUMBER) + 1);
+        return getRandom(MAXNUMBER, MINNUMBER);
+    }
+
+    public static void main(String [] args) {
+
+        for (int n = 0; n < 50; ++n) {
+            GameModel gm = new GameModel();
+
+            System.out.print("[ ");
+            for (int i = 0; i < gm.tab.length; ++i) {
+                System.out.print(gm.tab[i] + " ");
+            }
+            System.out.println("]");
+        }
     }
 }

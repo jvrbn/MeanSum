@@ -1,6 +1,3 @@
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import java.math.*;
 import java.util.Random;
 
 /**
@@ -26,18 +23,18 @@ public class GameModel {
 
     public GameModel(){
 
-
         int nombreRegroupement = getRandom(MAXREGROUPEMENT, MINREGROUPEMENT);
+
         tab = new int[nombreRegroupement];
+
         for(int i = 0; i < nombreRegroupement; i++){
 
             tab[i] = nbAlea();
 
         }
-
     }
 
-    public int getRandom(int borneSup, int borneInf){
+    private int getRandom(int borneSup, int borneInf){
 
         Random chiffre = new Random();
 
@@ -45,9 +42,10 @@ public class GameModel {
 
     }
 
-    public int nbAlea (){
+    private int nbAlea (){
 
         Random chiffre = new Random();
+
         double probabilite = chiffre.nextDouble();
 
         if(probabilite < 0.7){
@@ -59,7 +57,22 @@ public class GameModel {
         return getRandom(MAXNUMBER, MINNUMBER);
     }
 
-    public static void main(String [] args) {
+    public int getGoal(){
+
+        GameModel game = new GameModel();
+
+        int goal = 0;
+
+        for(int i = 0; i < game.tab.length; i++){
+
+            goal += game.tab[i];
+
+        }
+
+        return goal;
+    }
+
+    /**public static void main(String [] args) {
 
         for (int n = 0; n < 50; ++n) {
             GameModel gm = new GameModel();
@@ -70,5 +83,5 @@ public class GameModel {
             }
             System.out.println("]");
         }
-    }
+    }*/
 }

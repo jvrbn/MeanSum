@@ -20,18 +20,17 @@ public class GameViewController extends JPanel {
 	 * A single tile panel displays all the tiles of the game
 	 */
 	private TilePanel tilePanel ;
-	private JPanel pane ;
-	private JPanel panelDroit ;
-	private JPanel panelGauche ;
 	
 	// TODO Add all the other required UI components (labels, buttons, etc.)
-    private JButton reset = new JButton("Reset");
-    private JButton next = new JButton("Next");
-    private JButton giveUp = new JButton("Give Up");
-    private JButton findMean = new JButton("Find Mean");
+    private JButton reset;
+    private JButton next;
+    private JButton giveUp;
+    private JButton findMean;
 
-    private JLabel goal = new JLabel("Goal: ", SwingConstants.CENTER);
-    private JLabel currentSum = new JLabel("Current Sum: ", SwingConstants.CENTER);
+    private JLabel goal ;
+    private JLabel currentSum;
+    private JTextArea textGoal;
+    private JTextArea textCurrentSum;
 	
 	private void setupListeners() {
 		// TODO Set up the required listeners on the UI components (button clicks, etc.)
@@ -73,25 +72,28 @@ public class GameViewController extends JPanel {
 	public GameViewController() {
 		// TODO Initialize our game model
 		gameModel = new GameModel();
-		
+
+        reset = new JButton("Reset");
+        next = new JButton("Next");
+        giveUp = new JButton("Give Up");
+        findMean = new JButton("Find Mean");
+        goal = new JLabel("Goal: ", SwingConstants.CENTER);
+        currentSum = new JLabel("Current Sum: ", SwingConstants.CENTER);
+
 		// The layout defines how components are displayed
 		// (here, stacked along the Y axis)
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		tilePanel = new TilePanel(gameModel);
-		pane = new JPanel(new GridLayout(2,1));
-		panelDroit = new JPanel(new GridLayout(1,1));
-		panelGauche = new JPanel(new GridLayout(1,2));
 
 		this.add(tilePanel);
+		this.add(reset);
+		this.add(next);
+		this.add(giveUp);
+		this.add(findMean);
+		this.add(goal);
+		this.add(currentSum);
 
-        panelDroit.add(goal);
-        panelDroit.add(currentSum);
-
-		panelGauche.add(reset);
-        panelGauche.add(next);
-        panelGauche.add(giveUp);
-        panelGauche.add(findMean);
 
 		// TODO Initialize all the UI components
 		

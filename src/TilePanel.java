@@ -58,7 +58,9 @@ public class TilePanel extends JPanel {
 		super.paintComponent(g);
 		
 		// TODO Seek current game information from the model and draw the tiles accordingly
-		
+
+		int goal = gameModelHandle.getGoal();
+
 		// DEMONSTRATION: paint a rectangle with the active colour
 		g.setColor(tileColours[activeColourIndex]);
 		g.fillRect(0, 0, this.getWidth(), 128);

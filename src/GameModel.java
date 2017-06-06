@@ -19,17 +19,17 @@ public class GameModel {
     private static final int MAXNUMBER = 99;
     private static final int MINNUMBER = 10;
 
-    private int [] tab;
+    private int [] tabSuiteChiffre;
 
     public GameModel(){
 
         int nombreRegroupement = getRandom(MAXREGROUPEMENT, MINREGROUPEMENT);
 
-        tab = new int[nombreRegroupement];
+        tabSuiteChiffre = new int[nombreRegroupement];
 
         for(int i = 0; i < nombreRegroupement; i++){
 
-            tab[i] = nbAlea();
+            tabSuiteChiffre[i] = nbAlea();
 
         }
     }
@@ -63,9 +63,9 @@ public class GameModel {
 
         int goal = 0;
 
-        for(int i = 0; i < game.tab.length; i++){
+        for(int i = 0; i < game.tabSuiteChiffre.length; i++){
 
-            goal += game.tab[i];
+            goal += game.tabSuiteChiffre[i];
 
         }
 

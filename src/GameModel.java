@@ -21,6 +21,12 @@ public class GameModel {
 
     private int [] tabSuiteChiffre;
 
+    public int[] getTabSuiteChiffre() {
+
+        return tabSuiteChiffre;
+
+    }
+
     public GameModel(){
 
         int nombreRegroupement = getRandom(MAXREGROUPEMENT, MINREGROUPEMENT);
@@ -71,6 +77,8 @@ public class GameModel {
 
         return goal;
     }
+
+
 
     /**public static void main(String [] args) {
 

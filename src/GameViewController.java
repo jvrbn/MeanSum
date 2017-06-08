@@ -27,6 +27,8 @@ public class GameViewController extends JPanel {
     private JButton giveUp;
     private JButton findMean;
 
+    private JButton buttonGroup[];
+
     private JLabel goal ;
     private JLabel currentSum;
     private JTextArea textGoal;
@@ -64,7 +66,8 @@ public class GameViewController extends JPanel {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tilePanel.changeColour();
+
+                tilePanel.changeColour();
 			}
 		});
 	}
@@ -73,6 +76,8 @@ public class GameViewController extends JPanel {
 		// TODO Initialize our game model
 		gameModel = new GameModel();
 
+        tilePanel = new TilePanel(gameModel);
+
         reset = new JButton("Reset");
         next = new JButton("Next");
         giveUp = new JButton("Give Up");
@@ -80,20 +85,27 @@ public class GameViewController extends JPanel {
         goal = new JLabel("Goal: ", SwingConstants.CENTER);
         currentSum = new JLabel("Current Sum: ", SwingConstants.CENTER);
 
+        buttonGroup = new JButton[gameModel.getTabSuiteChiffre().length];
+
+        for(int i = 0; i < gameModel.getTabSuiteChiffre().length ; i++){
+
+            tilePanel.setLayout(new GridLayout());
+            buttonGroup[i] = new JButton();
+            tilePanel.add(buttonGroup[i]);
+
+        }
+
 		// The layout defines how components are displayed
 		// (here, stacked along the Y axis)
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
-		tilePanel = new TilePanel(gameModel);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		this.add(tilePanel);
+    	this.add(tilePanel);
 		this.add(reset);
 		this.add(next);
 		this.add(giveUp);
 		this.add(findMean);
 		this.add(goal);
 		this.add(currentSum);
-
 
 		// TODO Initialize all the UI components
 		

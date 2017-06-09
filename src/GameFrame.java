@@ -6,16 +6,15 @@ import javax.swing.SwingUtilities;
  * and the view-controller. The frame is filled by a single panel containing
  * all the elements, which is the {@link GameViewController} object.
  *
- * Javier Beltran
  */
 public class GameFrame extends JFrame {
-	
+
 	/**
 	 * Handles both the graphical interface (tiles, labels, buttons, etc.)
 	 * and the user input (mouse events, button clicks, etc.)
 	 */
 	private GameViewController gameViewController;
-	
+
 	/**
 	 * Initializes the main properties of the game window
 	 */
@@ -30,15 +29,15 @@ public class GameFrame extends JFrame {
 	 * The constructor instantiates the model and view-controller
 	 * and builds the game window.
 	 */
-	public GameFrame() {		
+	public GameFrame() {
 		// Initialize the interface
 		initUI();
-		
+
 		// Initialize the view and set it as the main component our window
 		gameViewController = new GameViewController();
 		setContentPane(gameViewController);
 	}
-	
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

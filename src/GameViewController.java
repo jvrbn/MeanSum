@@ -142,6 +142,8 @@ public class GameViewController extends JPanel {
         public void mouseClicked(MouseEvent e) {
         }
 
+
+
         //change la couleur du button
         public void mouseReleased(MouseEvent e) {
 

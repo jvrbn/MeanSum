@@ -37,11 +37,17 @@ public class GameViewController extends JPanel {
     private int nombreRegroupement;
     private String chaineChiffre;
 
+    private int tileWidth;
+    private int tileCount;
+
     private void setupListeners() {
         // TODO Set up the required listeners on the UI components (button clicks, etc.)
 
         reset.addActionListener(new Action());
         next.addActionListener(new Action());
+
+        tileCount = chaineChiffre.length();
+        tileWidth = tilePanel.getWidth()/tileCount;
 
         // Example of a mouse listener with a click event
         tilePanel.addMouseListener(new MouseListener() {
@@ -61,7 +67,12 @@ public class GameViewController extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
 
+                for(int i = 0; i < tileCount; i++){
 
+                    //g.setColor(tileColours[activeColourIndex]);
+                    tilePanel.setBackground(tilePanel.getColor()[i]);
+
+                }
 
             }
 

@@ -63,17 +63,15 @@ public class TilePanel extends JPanel {
         int tileCount = chaineChiffre.length();
         int tileWidth = this.getWidth()/tileCount;
 
-		//Variable local pour length
-
         int posx=0;
 		for(int i = 0; i < tileCount; i++){
 
             //g.setColor(tileColours[activeColourIndex]);
             g.setColor(Color.WHITE);
-			g.fillRect(posx,0, tileWidth, 128);
+			g.fillRect(posx,0, tileWidth, this.getHeight());
 
 			g.setColor(Color.black);
-            g.drawString(String.valueOf(chaineChiffre.charAt(i)), posx + tileWidth/2 ,64);
+            g.drawString(String.valueOf(chaineChiffre.charAt(i)), posx + tileWidth/2 ,this.getHeight()/2);
 
             changeColour();
             posx = tileWidth + posx;
@@ -87,5 +85,10 @@ public class TilePanel extends JPanel {
 
 		initializeColours();
 	}
+
+	public Color[] getColor(){
+
+	    return tileColours;
+    }
 
 }

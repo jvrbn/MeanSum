@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 /**
  * The tile panel displays all the tiles (one per digit) of the game.
  *
+ * Javier Beltran
  */
 public class TilePanel extends JPanel {
 
@@ -14,26 +15,15 @@ public class TilePanel extends JPanel {
 	 */
 	private GameModel gameModelHandle;
 
-	/**
+    /**
 	 * A table of colours that can be used to draw the tiles
 	 */
 	private Color[] tileColours;
-	
-	// NOTE: this attribute, the method associated with it, and the code related to it
+
+    // NOTE: this attribute, the method associated with it, and the code related to it
 	// are for demonstration purposes only. YOU SHOULD REMOVE THESE FROM YOUR APPLICATION.
 	private int activeColourIndex = 0;
-	
-	/**
-	 * Changes the active colour
-	 */
-	public void changeColour() {
-		if (activeColourIndex < tileColours.length - 1)
-			++activeColourIndex;
-		else
-			activeColourIndex = 0;
-		
-		repaint();
-	}
+
 	
 	/**
 	 * Initializes an array of pre-set colours
@@ -46,20 +36,18 @@ public class TilePanel extends JPanel {
     			"0x6495ED", "0x9BDDFF", "0xFBEC5D",	"0xFF7F50",
     			"0x00FFFF", "0x98777B", "0x99BADD", "0x654321"
     			};
-		
+
 		// Allocate and fill our colour array with the colour codes
 		tileColours = new Color[tileColourCodes.length];
 		for (int i = 0; i < tileColours.length; ++i)
 			tileColours[i] = Color.decode(tileColourCodes[i]);
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		// TODO Seek current game information from the model and draw the tiles accordingly
-
-		int goal = gameModelHandle.getGoal();
 
 		// DEMONSTRATION: paint a rectangle with the active colour
 		g.setColor(tileColours[activeColourIndex]);
@@ -73,5 +61,14 @@ public class TilePanel extends JPanel {
 		
 		initializeColours();
 	}
-	
+
+    /**
+     *
+     * @return Retourne un tableau de couleur
+     */
+    public Color[] getTileColours() {
+
+        return tileColours;
+    }
+
 }

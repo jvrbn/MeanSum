@@ -6,6 +6,7 @@ import java.util.Random;
  * to trigger actions (for example, generate a new game) and retrieve information
  * about the current status of the game (the digits, the goal, etc.).
  *
+ * Javier Beltran
  */
 public class GameModel {
 	
@@ -19,27 +20,36 @@ public class GameModel {
     private static final int MAXNUMBER = 99;
     private static final int MINNUMBER = 10;
 
-    private int [] tabSuiteChiffre;
+    private String chaineChiffre;
+    private int[] tabSuiteChiffre;
 
-    public int[] getTabSuiteChiffre() {
-
-        return tabSuiteChiffre;
-
-    }
-
+    /**
+     * Constructeur de GameModel
+     * met les chiffre aleatoire dans un tableau
+     * met les caractere de chaque case du tableau dans un string
+     */
     public GameModel(){
 
         int nombreRegroupement = getRandom(MAXREGROUPEMENT, MINREGROUPEMENT);
 
         tabSuiteChiffre = new int[nombreRegroupement];
 
+        chaineChiffre = "";
+
         for(int i = 0; i < nombreRegroupement; i++){
 
             tabSuiteChiffre[i] = nbAlea();
+            chaineChiffre += String.valueOf(tabSuiteChiffre[i]);
 
         }
     }
 
+    /**
+     * Genere des chiffre ou des nombres aleatoires selon des bornes
+     * @param borneSup Le plus grand nombres qui peux etre generer
+     * @param borneInf le plus petit nombre qui peux etre generer
+     * @return le nombre aleatoire
+     */
     private int getRandom(int borneSup, int borneInf){
 
         Random chiffre = new Random();
@@ -48,6 +58,10 @@ public class GameModel {
 
     }
 
+    /**
+     * Genere des chiffre aleatoire selon une probabilite
+     * @return Retourne les nombre aleatoire genere
+     */
     private int nbAlea (){
 
         Random chiffre = new Random();
@@ -63,22 +77,28 @@ public class GameModel {
         return getRandom(MAXNUMBER, MINNUMBER);
     }
 
+    /**
+     *
+     * @return Retourne la somme total a atteindre
+     */
     public int getGoal(){
-
-        GameModel game = new GameModel();
 
         int goal = 0;
 
-        for(int i = 0; i < game.tabSuiteChiffre.length; i++){
+        for(int j = 0; j < tabSuiteChiffre.length; j++){
 
-            goal += game.tabSuiteChiffre[i];
-
+            goal = tabSuiteChiffre[j] + goal;
+            System.out.print(tabSuiteChiffre[j]);
         }
 
         return goal;
     }
 
+    public String getChaine() {
 
+        return chaineChiffre;
+
+    }
 
     /**public static void main(String [] args) {
 

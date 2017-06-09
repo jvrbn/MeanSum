@@ -6,6 +6,7 @@ import javax.swing.SwingUtilities;
  * and the view-controller. The frame is filled by a single panel containing
  * all the elements, which is the {@link GameViewController} object.
  *
+ * Javier Beltran
  */
 public class GameFrame extends JFrame {
 	

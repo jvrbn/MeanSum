@@ -25,7 +25,6 @@ public class GameViewController extends JPanel {
      * A single tile panel displays all the tiles of the game
      */
     private TilePanel tilePanel;
-    private ArrayList<TilePanel> tiles;
 
     // TODO Add all the other required UI components (labels, buttons, etc.)
 
@@ -67,10 +66,12 @@ public class GameViewController extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
 
+                JPanel actualPane = new JPanel();
                 for(int i = 0; i < tileCount; i++){
 
                     //g.setColor(tileColours[activeColourIndex]);
                     tilePanel.setBackground(tilePanel.getColor()[i]);
+
 
                 }
 
@@ -122,7 +123,7 @@ public class GameViewController extends JPanel {
                 gameModel = new GameModel();
                 goal.setText("Current goal: " + gameModel.getGoal());
                 tilePanel.removeAll();
-
+                //tilePanel.paintComponent();
                 //avoir acces ua nouceau gamemodel
                 //repaint tilepanel
                 repaint();

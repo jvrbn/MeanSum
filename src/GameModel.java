@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -22,6 +24,8 @@ public class GameModel {
 
     private String chaineChiffre;
     private int[] tabSuiteChiffre;
+    private ArrayList<Integer> numberList;
+    private int index = 0;
 
     /**
      * Constructeur de GameModel
@@ -36,11 +40,12 @@ public class GameModel {
 
         chaineChiffre = "";
 
+        numberList = new ArrayList<>(Collections.nCopies(chaineChiffre.length(),0));
+
         for(int i = 0; i < nombreRegroupement; i++){
 
             tabSuiteChiffre[i] = nbAlea();
             chaineChiffre += String.valueOf(tabSuiteChiffre[i]);
-
         }
     }
 
@@ -97,6 +102,40 @@ public class GameModel {
     public String getChaine() {
 
         return chaineChiffre;
+
+    }
+
+    public int getDigit (int n){
+
+        return numberList.get(n);
+
+    }
+
+    public int getNextAvailableId(){
+
+        int[] idList = new int[chaineChiffre.length()];
+        index++;
+
+        for(int i = 0; i < chaineChiffre.length(); i++){
+
+            idList[i] = i+1;
+        }
+
+        return idList[index];
+
+    }
+
+    public void setNewGroup(int start){
+
+        int id = getNextAvailableId();
+        numberList.add(start, id);
+        numberList.add(start + 1, id);
+
+    }
+
+    public void setNewSoloGroup(int start){
+
+        numberList.add(start, getNextAvailableId());
 
     }
 

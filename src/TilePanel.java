@@ -58,25 +58,34 @@ public class TilePanel extends JPanel {
 
 		// TODO Seek current game information from the model and draw the tiles accordingly
 
-		// DEMONSTRATION: paint a rectangle with the active colour
-        String chaineChiffre = gameModelHandle.getChaine();
-        int tileCount = chaineChiffre.length();
-        int tileWidth = this.getWidth()/tileCount;
-
         int posx=0;
-		for(int i = 0; i < tileCount; i++){
+		for(int i = 0; i < getTileCount(); i++){
 
-            //g.setColor(tileColours[activeColourIndex]);
             g.setColor(Color.WHITE);
-			g.fillRect(posx,0, tileWidth, this.getHeight());
+			g.fillRect(posx,0, getTileWidth(), this.getHeight());
 
 			g.setColor(Color.black);
-            g.drawString(String.valueOf(chaineChiffre.charAt(i)), posx + tileWidth/2 ,this.getHeight()/2);
-
-            changeColour();
-            posx = tileWidth + posx;
+            g.drawString(String.valueOf(getChaineChiffre().charAt(i)),posx + getTileWidth()/2 ,this.getHeight()/2);
+            posx = getTileWidth() + posx;
 		}
 	}
+
+	public String getChaineChiffre(){
+
+	    return gameModelHandle.getChaine();
+    }
+
+	public int getTileCount(){
+
+	    return getChaineChiffre().length();
+    }
+
+	public int getTileWidth(){
+
+	    return this.getWidth()/getTileCount();
+
+    }
+
 
 	public TilePanel(GameModel gameModel) {
 		if (gameModel == null)
@@ -90,5 +99,22 @@ public class TilePanel extends JPanel {
 
 	    return tileColours;
     }
+
+    public int getTileId(int x, int y){
+
+		int id = 0;
+
+		if(x < this.getWidth() && x >= 0 && y < this.getHeight() && y >= 0) {
+
+		    System.out.print(id);
+            id = x / getTileWidth();
+
+        }else{
+
+		    id = -1;
+        }
+
+        return id ;
+	}
 
 }

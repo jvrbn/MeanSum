@@ -36,8 +36,9 @@ public class GameViewController extends JPanel {
     private int nombreRegroupement;
     private String chaineChiffre;
 
-    private int tileWidth;
-    private int tileCount;
+    private int tileIdPressed;
+    private int tileIdRelease;
+
 
     private void setupListeners() {
         // TODO Set up the required listeners on the UI components (button clicks, etc.)
@@ -45,18 +46,44 @@ public class GameViewController extends JPanel {
         reset.addActionListener(new Action());
         next.addActionListener(new Action());
 
-        tileCount = chaineChiffre.length();
-        tileWidth = tilePanel.getWidth()/tileCount;
-
         // Example of a mouse listener with a click event
         tilePanel.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseReleased(MouseEvent e) {
+
+                //compare ou je relache avec la position garder en memoire
+                tileIdRelease = tilePanel.getTileId(e.getX(),e.getY());
+
+                if(tileIdRelease == tileIdPressed){
+
+                    gameModel.setNewSoloGroup(tileIdPressed);
+                    System.out.print(tileIdPressed);
+
+                }
+
+                else if(tileIdRelease < tileIdPressed && tileIdRelease != -1){
+
+                    int tileTmp = tileIdRelease;
+                    tileIdRelease = tileIdPressed;
+                    tileIdPressed = tileTmp;
+
+                    gameModel.setNewGroup(tileIdPressed);
+                    System.out.print(tileIdPressed);
+                }
+
+                else if(tileIdRelease == -1){
+
+                }
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
+
+                //garder la position en memoire
+                tileIdPressed = tilePanel.getTileId(e.getX(),e.getY());
+
             }
 
             @Override
@@ -65,16 +92,6 @@ public class GameViewController extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
-                JPanel actualPane = new JPanel();
-                for(int i = 0; i < tileCount; i++){
-
-                    //g.setColor(tileColours[activeColourIndex]);
-                    tilePanel.setBackground(tilePanel.getColor()[i]);
-
-
-                }
-
             }
 
             @Override
@@ -120,13 +137,10 @@ public class GameViewController extends JPanel {
 
             if (e.getSource() == next) {
 
-                gameModel = new GameModel();
-                goal.setText("Current goal: " + gameModel.getGoal());
                 tilePanel.removeAll();
-                //tilePanel.paintComponent();
-                //avoir acces ua nouceau gamemodel
-                //repaint tilepanel
-                repaint();
+                goal.setText("Current goal: " + gameModel.getGoal());
+                gameModel = new GameModel();
+                tilePanel.repaint();
 
             } else if (e.getSource() == reset) {
 

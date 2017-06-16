@@ -25,6 +25,7 @@ public class GameModel {
     private String chaineChiffre;
     private int[] tabSuiteChiffre;
     private ArrayList<Integer> numberList;
+    private ArrayList<Integer> idList;
     private int index = 0;
 
     /**
@@ -36,11 +37,11 @@ public class GameModel {
 
         int nombreRegroupement = getRandom(MAXREGROUPEMENT, MINREGROUPEMENT);
 
+        //pour une nouvelle partie on va devoir reinitialiser les arraylist et le tableau
         tabSuiteChiffre = new int[nombreRegroupement];
-
         chaineChiffre = "";
-
         numberList = new ArrayList<>(Collections.nCopies(chaineChiffre.length(),0));
+        idList = new ArrayList<>(chaineChiffre.length());
 
         for(int i = 0; i < nombreRegroupement; i++){
 
@@ -113,15 +114,18 @@ public class GameModel {
 
     public int getNextAvailableId(){
 
-        int[] idList = new int[chaineChiffre.length()];
-        index++;
+        int id = index++;
+        idList.add(id);
 
-        for(int i = 0; i < chaineChiffre.length(); i++){
+        if(idList.contains(id) && id < chaineChiffre.length()){
 
-            idList[i] = i+1;
+            System.out.print(id);
+            return id;
+
         }
 
-        return idList[index];
+        System.out.print(id);
+        return id;
 
     }
 
